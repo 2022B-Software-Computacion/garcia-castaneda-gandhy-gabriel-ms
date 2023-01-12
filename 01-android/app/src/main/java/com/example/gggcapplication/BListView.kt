@@ -110,6 +110,7 @@ class BListView : AppCompatActivity() {
     ){
         arreglo.add(
             BEntrenador(
+                1,
                 "Gandhy",
                 "Descripcion"
             )
@@ -119,3 +120,16 @@ class BListView : AppCompatActivity() {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
