@@ -44,7 +44,7 @@
         android:id="@+id/btn_intent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="24dp"
         android:text="I. EXPLICITO"
         app:layout_constraintBottom_toTopOf="@+id/btn_ir_intent_implicito"
         app:layout_constraintEnd_toEndOf="@+id/btn_ir_intent_implicito"
@@ -60,5 +60,15 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_ciclo_vida"
         app:layout_constraintEnd_toEndOf="@+id/btn_ciclo_vida"
         app:layout_constraintStart_toStartOf="@+id/btn_ciclo_vida" />
+
+    <Button
+        android:id="@+id/btn_sqlite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="sqlite"
+        app:layout_constraintBottom_toTopOf="@+id/btn_intent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_intent"
+        app:layout_constraintStart_toStartOf="@+id/btn_intent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
