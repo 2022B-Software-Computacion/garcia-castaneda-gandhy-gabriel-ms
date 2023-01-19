@@ -1,20 +1,24 @@
 import java.time.LocalDate
-import java.util.Date
 
 class Proveedor (
+    var id: Int,
     var nombre: String,
     var fechaRegistro: LocalDate,
     var estaDisponible: Boolean,
-    var direccion: String,
-    var telefono: String
+    var telefono: String,
+    var productos: ArrayList<Int>
 ) {
     init {
         //nombre
         //fechaRegistro
     }
 
+    constructor( //Segundo constructor (vacío)
+    ) : this(0, "", LocalDate.parse("1999-11-05"), false, "", arrayListOf()) {
+    }
+
     override fun toString(): String {
-        return "Proveedor('$nombre', $fechaRegistro, $estaDisponible, '$direccion', '$telefono')"
+        return "$id,$nombre,$fechaRegistro,$estaDisponible,$telefono,$productos"
     }
 
 
