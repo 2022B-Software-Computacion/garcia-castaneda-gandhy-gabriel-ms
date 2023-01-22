@@ -1,5 +1,4 @@
-CODIGO,NOMBRE,PRECIOUNIT,STOCK,DESCRIPCION
-1,Galletas Amor,1.00,50,Galletas Waffer rellenas
-2,Chocolate Tango,0.50,100,Galleta 25g
-3,Bom Bom Bum,0.20,30,Chupete individual
-4,Café Buendía,2.50,25,Tarro de café 85g
+CODIGO,NOMBRE,FECHA REGISTRO,DISPONIBLE,TELEFONO,PRODUCTOS
+1,Galletas Amor,1.0,50,Galletas Waffer rellenas
+4,Café Buendía,2.5,25,Tarro de café 85g
+3,Bom Bom Bum Especial,0.2,40,Chupete individual

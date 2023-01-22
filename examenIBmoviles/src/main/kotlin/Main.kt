@@ -1,30 +1,23 @@
-import java.io.InputStream
-import java.time.LocalDate
 import java.io.File
-import java.nio.file.Files
-import java.nio.file.StandardOpenOption
-import java.util.function.Predicate
+import java.lang.NumberFormatException
+import java.time.LocalDate
 
 val archivoProveedores = File("resources/csv/proveedores.csv")
 val archivoProducto = File("resources/csv/productos.csv")
 
 fun main() {
-    val fecha = LocalDate.parse("2022-12-25")
+    /* val fecha = LocalDate.parse("2022-12-25")
 
-    var inputStreamPrueba: InputStream = archivoProveedores.inputStream()
+    val proveedores = BaseDatosCsv.leerElementos(Proveedor())
 
-    val proveedores = leerElementos<Proveedor>(Proveedor())
+    val productos = BaseDatosCsv.leerElementos(Producto())
 
-    inputStreamPrueba = archivoProducto.inputStream()
-    val productos = leerElementos<Producto>(Producto())
-
-    val respuesta: Unit = proveedores
+    proveedores
         .forEach { valorActual: Any ->
             println(valorActual)
         }
 
-    println()
-    val respuesta2: Unit = productos
+    productos
         .forEach { valorActual: Any ->
             println(valorActual)
         }
@@ -33,122 +26,68 @@ fun main() {
     //crearProveedor(nuevoProveedor)
     val nuevoProducto = Producto(3, "Bom Bom Bum Especial",0.20f,40,"Chupete individual")
 
-    crearElemento<Proveedor>(nuevoProveedor)
-    actualizarElemento<Producto>(3, nuevoProducto)
-    eliminarElementoById<Producto>(2, Producto())
-    print(leerElementoById<Proveedor>(2, Proveedor()))
-}
+    BaseDatosCsv.crearElemento(nuevoProveedor)
+    BaseDatosCsv.actualizarElemento(3, nuevoProducto)
+    BaseDatosCsv.eliminarElementoById(2, Producto())
+    print(BaseDatosCsv.leerElementoById(2, Proveedor())) */
 
-fun <E> leerElementoById(id: Int, elemento: E): Any? {
-    val archivo = seleccionarArchivo(elemento)
+    var salir = false
+    var opcion: Int
 
-    val elementos = leerElementos(elemento)
+    println("BIENVENIDO AL SISTEMA CRUD DE PROVEEDORES Y PRODUCTOS")
 
-    return when (elemento!!::class) {
-        (Proveedor::class) -> {
-            var coincideId = Predicate { elemento: Proveedor -> elemento.id == id}
-            elementos.find { x: Any -> coincideId.test(x as Proveedor) }
+    while (!salir) {
+        println("Escriba el número de la opción que desea realizar")
+        println("1. Crear un producto")
+        println("2. Visualizar todos los productos")
+        println("3. Visualizar un producto por su id")
+        println("4. Actualizar los datos de un producto")
+        println("5. Eliminar un producto por su id")
+        println("6. Crear un proveedor")
+        println("7. Visualizar todos los proveedores")
+        println("8. Visualizar un proveedor por su id")
+        println("9. Actualizar los datos de un proveedor")
+        println("10. Eliminar un proveedor por su id")
+        println("11. Salir")
+
+        opcion = readLine()!!.toInt()
+
+        when (opcion) {
+            (1) -> {
+                //Crear producto
+            }
+            (2) -> {
+
+            }
+            (3) -> {
+
+            }
+            (4) -> {
+
+            }
+            (5) -> {
+
+            }
+            (6) -> {
+
+            }
+            (7) -> {
+
+            }
+            (8) -> {
+
+            }
+            (9) -> {
+
+            }
+            (10) -> {
+
+            }
+            (11) -> {
+
+            }
+            else -> println("Solo números entre 1 y 11")
         }
-        else -> {
-            var coincideId = Predicate { elemento: Producto -> elemento.id == id}
-            elementos.find { x: Any -> coincideId.test(x as Producto) }
-        }
-    }
-}
-
-fun <E> leerElementos(elemento: E): List<Any>{
-    val archivo = seleccionarArchivo(elemento)
-    val inputStream = archivo.inputStream()
-    val reader = inputStream.bufferedReader()
-    reader.readLine() //No se toma en cuenta el encabezado
-
-    when (elemento!!::class) {
-        (Proveedor::class) -> {
-            val resultado = reader.lineSequence()
-                .filter { it.isNotBlank() }
-                .map {
-                    val stringsInfo: List<String> = it.split(",", ignoreCase = false, limit = 6)
-                    Proveedor(stringsInfo[0].toInt(), stringsInfo[1], LocalDate.parse(stringsInfo[2]), stringsInfo[3].toBoolean(),
-                        stringsInfo[4], extraerArrayProductos(stringsInfo[5]))
-                }.toList()
-            return resultado
-        }
-        else -> {
-            val resultado = reader.lineSequence()
-                .filter { it.isNotBlank() }
-                .map {
-                    val stringsInfo: List<String> = it.split(",", ignoreCase = false, limit = 5)
-                    Producto(stringsInfo[0].toInt(), stringsInfo[1], stringsInfo[2].toFloat(), stringsInfo[3].toInt(),
-                        stringsInfo[4])
-                }.toList()
-            return resultado
-        }
-    }
-
-    inputStream.close()
-}
-
-fun extraerArrayProductos(input: String): ArrayList<Int>{
-    //Ej: 1-2-3
-    val idsStringLimpio = input.replace(" ", "").removePrefix("[").removeSuffix("]")
-    val idsString = idsStringLimpio.split(",", ignoreCase = true)
-    val idsInt = idsString.map { valorActual: String -> valorActual.toInt() }
-    return ArrayList(idsInt)
-}
-
-fun <E> crearElemento(nuevoElemento: E) {
-    val archivo = seleccionarArchivo(nuevoElemento)
-    Files.write(archivo.toPath(), "\n".toByteArray() + nuevoElemento.toString().toByteArray(),
-       StandardOpenOption.APPEND)
-}
-
-fun <E> eliminarElementoById(id: Int, elemento: E) {
-    val archivo = seleccionarArchivo(elemento)
-    val elementos = ArrayList(leerElementos(elemento))
-    var encabezado: String = ""
-
-    println("\n" + elementos)
-
-
-    when (elemento!!::class) {
-        (Proveedor::class) -> {
-            var coincideId = Predicate { elemento: Proveedor -> elemento.id == id}
-            remove<Proveedor> (elementos, coincideId)
-            encabezado = "CODIGO,NOMBRE,PRECIOUNIT,STOCK,DESCRIPCION\n"
-        }
-        else -> {
-            var coincideId = Predicate { elemento: Producto -> elemento.id == id}
-            remove<Producto> (elementos, coincideId)
-            encabezado = "CODIGO,NOMBRE,FECHA REGISTRO,DISPONIBLE,TELEFONO,PRODUCTOS\n"
-        }
-    }
-
-  //  println("\n" + elementos)
-
-    archivo.writeText(encabezado)
-    elementos.forEach {
-        //Agregar con un foreachindex que solo al ultimo no se ponga un salto de linea
-        valorActual: Any? -> archivo.appendText(valorActual.toString() + "\n")
-    }
-}
-
-fun <E> actualizarElemento(id: Int, nuevoElemento: E) {
-    val archivo = seleccionarArchivo(nuevoElemento)
-    val elementos = ArrayList(leerElementos(nuevoElemento))
-
-    eliminarElementoById(id, nuevoElemento)
-    crearElemento(nuevoElemento)
-}
-
-fun <E : Any> remove(list: ArrayList<Any>, predicate: Predicate<E>){
-    list.removeIf { x: Any -> predicate.test(x as E) }
-}
-
-fun <E> seleccionarArchivo(elemento: E): File {
-    val archivo: File
-    when (elemento!!::class) {
-        (Proveedor::class) -> return archivoProveedores
-        else -> return archivoProducto
     }
 }
 
