@@ -37,6 +37,7 @@ class BaseDatosCsv {
                 }
             }
         }
+
         fun <E> leerElementoById(id: Int, elemento: E): Any? {
             val elementos = leerElementos(elemento)
 
@@ -50,14 +51,6 @@ class BaseDatosCsv {
                     elementos.find { x: Any -> coincideId.test(x as Producto) }
                 }
             }
-        }
-
-        fun extraerArrayProductos(input: String): ArrayList<Int>{
-            //Ej: [1, 2, 3]
-            val idsStringLimpio = input.replace(" ", "").removePrefix("[").removeSuffix("]")
-            val idsString = idsStringLimpio.split(",", ignoreCase = true)
-            val idsInt = idsString.map { valorActual: String -> valorActual.toInt() }
-            return ArrayList(idsInt)
         }
 
         fun <E> crearElemento(nuevoElemento: E) {
@@ -105,7 +98,15 @@ class BaseDatosCsv {
             crearElemento(nuevoElemento)
         }
 
-        //función para eliminar un elemento si cumple una condición
+        fun extraerArrayProductos(input: String): ArrayList<Int>{
+            //Ej: [1, 2, 3]
+            val idsStringLimpio = input.replace(" ", "").removePrefix("[").removeSuffix("]")
+            val idsString = idsStringLimpio.split(",", ignoreCase = true)
+            val idsInt = idsString.map { valorActual: String -> valorActual.toInt() }
+            return ArrayList(idsInt)
+        }
+
+        //función para eliminar un elemento de una lista si cumple una condición
         fun <E : Any> remove(list: ArrayList<Any>, predicate: Predicate<E>){
             list.removeIf { x: Any -> predicate.test(x as E) }
         }

@@ -186,7 +186,8 @@ fun main() {
             }
             else -> println("Solo números entre 1 y 11")
         }
-        println("Saliendo...")
+
     }
+    println("Saliendo...")
 }
 
