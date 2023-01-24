@@ -8,7 +8,7 @@ class Proveedor (
     var telefono: String,
     var productos: ArrayList<Int>
 ) {
-    constructor( //Segundo constructor (vacío)
+    constructor( //Constructor (vacío)
     ) : this(0, "", LocalDate.parse("1999-11-05"), false, "", arrayListOf())
 
     override fun toString(): String {

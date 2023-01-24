@@ -5,7 +5,7 @@ class Producto (
     var stock: Int,
     var descripcion: String
 ) {
-    constructor( //Segundo constructor (vacío)
+    constructor( //Constructor (vacío)
     ) : this(0, "", 0.00f, 0, "")
 
     override fun toString(): String {
