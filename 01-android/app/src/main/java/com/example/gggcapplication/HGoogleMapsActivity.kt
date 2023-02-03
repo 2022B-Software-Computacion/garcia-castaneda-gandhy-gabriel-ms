@@ -1,17 +1,16 @@
 package com.example.gggcapplication
 
+import android.Manifest
 import android.content.pm.PackageManager
-import android.graphics.Camera
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.google.android.gms.maps.CameraUpdate
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 
 class HGoogleMapsActivity : AppCompatActivity() {
     private lateinit var mapa: GoogleMap
@@ -29,7 +28,7 @@ class HGoogleMapsActivity : AppCompatActivity() {
         val permisosFineLocation = ContextCompat
             .checkSelfPermission(
                 contexto,
-                android.Manifest.permission.ACCESS_FINE_LOCATION // permiso que van a chequear
+                Manifest.permission.ACCESS_FINE_LOCATION // permiso que van a chequear
             )
         val tienePermisos = permisosFineLocation == PackageManager.PERMISSION_GRANTED
 
@@ -39,7 +38,7 @@ class HGoogleMapsActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(
                 this, //Contexto
                 arrayOf(    //Arreglo permisos
-                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                    Manifest.permission.ACCESS_FINE_LOCATION
                 ),
                 1 //Código de petición de los permisos
             )
@@ -53,6 +52,47 @@ class HGoogleMapsActivity : AppCompatActivity() {
             if (googleMap != null) {
                 mapa = googleMap
                 establecerConfiguracionMapa()
+
+                val zoom = 17f
+                val quicentro = LatLng(
+                    -0.17577855381359975, -78.48009734334076
+                )
+                val titulo = "Quicentro"
+                val markQuicentro = anadirMarcador(quicentro, titulo)
+                markQuicentro.tag = titulo
+
+                val poliLineaUno = googleMap
+                    .addPolyline(
+                        PolylineOptions()
+                            .clickable(true)
+                            .add(
+                                LatLng(-0.17761026253590054,
+                                    -78.48085076089252),
+                                LatLng(-0.17564689490459107,
+                                    -78.48106533760762),
+                                LatLng(-0.17658029921419555,
+                                    -78.477160041393)
+                            )
+                    )
+                poliLineaUno.tag = "linea-1" // <- ID
+
+                //POLÍGONO
+                val poligonoUno = googleMap
+                    .addPolygon(
+                        PolygonOptions()
+                            .clickable(true)
+                            .add(
+                                LatLng(-0.1751930789313819,
+                                    -78.47940819046653),
+                                LatLng(-0.17747051536134076,
+                                    -78.4789552527891),
+                                LatLng(-0.17579274009118578,
+                                    -78.47743057525523)
+                            )
+                    )
+                poligonoUno.fillColor = 0xc771c4
+                poligonoUno.tag = "poligono-2" // <- ID
+                escucharListeners()
             }
         }
     }
@@ -74,12 +114,12 @@ class HGoogleMapsActivity : AppCompatActivity() {
         }
     }
 
-    fun anadirMarcador(latLng: LatLng, title: String){
-        mapa.addMarker(
+    fun anadirMarcador(latLng: LatLng, title: String): Marker {
+        return mapa.addMarker(
             MarkerOptions()
                 .position(latLng)
                 .title(title)
-        )
+        )!!
     }
 
     fun moverCamaraConZoom(latLng: LatLng, zoom: Float = 10f){
@@ -87,6 +127,36 @@ class HGoogleMapsActivity : AppCompatActivity() {
             CameraUpdateFactory
                 .newLatLngZoom(latLng, zoom)
         )
+    }
+
+    fun escucharListeners(){
+        mapa.setOnPolygonClickListener {
+            Log.i("mapa", "setOnPolygonClickListener ${it}")
+            it.tag //ID
+        }
+
+        mapa.setOnPolylineClickListener {
+            Log.i("mapa", "setOnPolylineClickListener ${it}")
+            it.tag //ID
+        }
+
+        mapa.setOnMarkerClickListener {
+            Log.i("mapa", "setOnMarkerClickListener ${it}")
+            it.tag //ID
+            return@setOnMarkerClickListener true
+        }
+
+        mapa.setOnCameraMoveListener {
+            Log.i("mapa", "setOnCameraMoveListener")
+        }
+
+        mapa.setOnCameraMoveStartedListener {
+            Log.i("mapa", "setOnCameraMoveStartedListener ${it}")
+        }
+
+        mapa.setOnCameraIdleListener {
+            Log.i("mapa", "setOnCameraIdleListener")
+        }
     }
 }
 
