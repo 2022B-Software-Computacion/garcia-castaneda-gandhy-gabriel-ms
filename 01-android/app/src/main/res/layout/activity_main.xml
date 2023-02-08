@@ -94,4 +94,15 @@
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="@+id/btn_sqlite" />
 
+    <Button
+        android:id="@+id/btn_intent_firebase_ui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/btn_recycler_view"
+        app:layout_constraintEnd_toEndOf="@+id/btn_recycler_view"
+        app:layout_constraintStart_toStartOf="@+id/btn_recycler_view"
+        tools:text="UI FIREBASE" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
