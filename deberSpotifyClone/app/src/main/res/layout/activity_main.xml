@@ -80,7 +80,7 @@
             tools:listitem="@layout/recycler_view_playlist" />
 
         <TextView
-            android:id="@+id/tv_similares"
+            android:id="@+id/tv_similars"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/rv_mixes"
@@ -93,10 +93,10 @@
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_similares"
+            android:id="@+id/rv_similars"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_similares"
+            android:layout_below="@id/tv_similars"
             android:layout_margin="4dp"
             android:orientation="horizontal"
             android:padding="4dp"
@@ -105,10 +105,10 @@
 
         <!-- text view to display heading-->
         <TextView
-            android:id="@+id/tv_recientes"
+            android:id="@+id/tv_recent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rv_similares"
+            android:layout_below="@id/rv_similars"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:padding="10dp"
@@ -119,10 +119,10 @@
 
         <!-- recycler view for various albums-->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_recientes"
+            android:id="@+id/rv_recent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_recientes"
+            android:layout_below="@id/tv_recent"
             android:layout_margin="4dp"
             android:orientation="horizontal"
             android:padding="4dp"

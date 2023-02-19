@@ -47,13 +47,17 @@ class RecyclerViewAdaptadorPlaylist(
         holder.itemView.setOnClickListener(View.OnClickListener {
             fun onClick(view: View){
                 val i = Intent(context, PlaylistSongsActivity::class.java)
+                i.putExtra("id", currentPlaylist.id)
+                i.putExtra("nombre", currentPlaylist.name)
+                i.putExtra("img", currentPlaylist.imageUrl)
+                i.putExtra("artists", currentPlaylist.mainArtists)
+                context.startActivity(i)
             }
         })
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return this.playlistArray.size
     }
-
 
 }

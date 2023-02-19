@@ -39,7 +39,7 @@
         android:lines="1"
         android:maxLines="1"
         android:padding="4dp"
-        android:text="Artista album"
+        android:text="Artistas playlist"
         android:textColor="@color/white"
         android:textSize="12sp" />
 
