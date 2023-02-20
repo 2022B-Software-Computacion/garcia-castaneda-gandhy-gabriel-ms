@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
@@ -45,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     fun initRvFavMixes(playlistArray: ArrayList<Playlist>) {
         val rvPlaylists = findViewById<RecyclerView>(R.id.rv_mixes)
 
-        val playlistAdapter = RecyclerViewAdaptadorPlaylist(playlistArray, this)
+        val playlistAdapter = RecyclerViewAdapterPlaylist(playlistArray, this)
         rvPlaylists.adapter = playlistAdapter
         //rvPlaylists.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         //rvPlaylists.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
@@ -55,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     fun initRvSimilars(playlistArray: ArrayList<Playlist>) {
         val rvPlaylists = findViewById<RecyclerView>(R.id.rv_similars)
 
-        val playlistAdapter = RecyclerViewAdaptadorPlaylist(playlistArray, this)
+        val playlistAdapter = RecyclerViewAdapterPlaylist(playlistArray, this)
         rvPlaylists.adapter = playlistAdapter
         //rvPlaylists.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         //rvPlaylists.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
@@ -65,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     fun initRvRecent(playlistArray: ArrayList<Playlist>) {
         val rvPlaylists = findViewById<RecyclerView>(R.id.rv_recent)
 
-        val playlistAdapter = RecyclerViewAdaptadorPlaylist(playlistArray, this)
+        val playlistAdapter = RecyclerViewAdapterPlaylist(playlistArray, this)
         rvPlaylists.adapter = playlistAdapter
         //rvPlaylists.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         //rvPlaylists.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)

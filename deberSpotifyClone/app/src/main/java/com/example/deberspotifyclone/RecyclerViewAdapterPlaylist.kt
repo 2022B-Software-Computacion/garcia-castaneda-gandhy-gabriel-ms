@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.squareup.picasso.Picasso
 
-class RecyclerViewAdaptadorPlaylist(
+class RecyclerViewAdapterPlaylist(
     private val playlistArray: ArrayList<Playlist>,
     private val context: Context
-): RecyclerView.Adapter<RecyclerViewAdaptadorPlaylist.MyViewHolder>() {
+): RecyclerView.Adapter<RecyclerViewAdapterPlaylist.MyViewHolder>() {
     inner class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val ivPlaylist: ImageView
         val tvNamePlaylist: TextView
@@ -22,12 +21,12 @@ class RecyclerViewAdaptadorPlaylist(
 
         init {
             ivPlaylist = view.findViewById(R.id.iv_playlist)
-            tvNamePlaylist = view.findViewById(R.id.tv_name_playlist)
+            tvNamePlaylist = view.findViewById(R.id.tv_playlist_name)
             tvArtistsPlaylist = view.findViewById(R.id.tv_artists_playlist)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewAdapterPlaylist.MyViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(
@@ -44,16 +43,14 @@ class RecyclerViewAdaptadorPlaylist(
         holder.tvNamePlaylist.text = currentPlaylist.name
         holder.tvArtistsPlaylist.text = currentPlaylist.mainArtists
 
-        holder.itemView.setOnClickListener(View.OnClickListener {
-            fun onClick(view: View){
-                val i = Intent(context, PlaylistSongsActivity::class.java)
-                i.putExtra("id", currentPlaylist.id)
-                i.putExtra("nombre", currentPlaylist.name)
-                i.putExtra("img", currentPlaylist.imageUrl)
-                i.putExtra("artists", currentPlaylist.mainArtists)
-                context.startActivity(i)
-            }
-        })
+        holder.itemView.setOnClickListener {
+            val i = Intent(context, PlaylistDetailActivity::class.java)
+            i.putExtra("id", currentPlaylist.id)
+            i.putExtra("nombre", currentPlaylist.name)
+            i.putExtra("img", currentPlaylist.imageUrl)
+            i.putExtra("artists", currentPlaylist.mainArtists)
+            context.startActivity(i)
+        }
     }
 
     override fun getItemCount(): Int {
