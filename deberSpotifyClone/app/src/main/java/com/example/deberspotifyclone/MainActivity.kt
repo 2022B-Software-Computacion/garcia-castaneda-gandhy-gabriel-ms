@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         playlistArray
             .add(Playlist(3, "Mix Varios", "Mix variado", "Gandhy García", 5, 3.11f, "https://upload.wikimedia.org/wikipedia/en/1/12/Muse_-_Will_of_the_People.png", "Muse, Slipknot, System Of A Down", playlist3))
         playlistArray
-            .add(Playlist(4, "Mix para ti", "Rage Against The Machine, Queens of Stone Age y más", "Gandhy García", 42, 3.11f, "https://indiehoy.com/wp-content/uploads/2023/01/maneskin.jpg", "Maneskin, RHCP, Muse, Nothing But Thieves, Radiohead", playlist1))
+            .add(Playlist(4, "Mix para ti", "Rage Against The Machine, Queens of Stone Age y más", "Gandhy García", 42, 3.11f, "https://indiehoy.com/wp-content/uploads/2023/01/maneskin.jpg", "Maneskin, RHCP, Muse, Nothing But Thieves, Radiohead", playlist4))
 
 
         initRvFavMixes(playlistArray)
