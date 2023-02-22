@@ -8,7 +8,8 @@ class Playlist(
     var numSongs: Int,
     var duration: Float,
     var imageUrl: String,
-    var mainArtists: String
+    var mainArtists: String,
+    var playlistSongs: ArrayList<Song>
 ) {
 
 }

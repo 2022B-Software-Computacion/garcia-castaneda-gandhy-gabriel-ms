@@ -22,7 +22,7 @@ class RecyclerViewAdapterPlaylist(
         init {
             ivPlaylist = view.findViewById(R.id.iv_playlist)
             tvNamePlaylist = view.findViewById(R.id.tv_playlist_name)
-            tvArtistsPlaylist = view.findViewById(R.id.tv_artists_playlist)
+            tvArtistsPlaylist = view.findViewById(R.id.tv_playlist_artists)
         }
     }
 
@@ -46,9 +46,10 @@ class RecyclerViewAdapterPlaylist(
         holder.itemView.setOnClickListener {
             val i = Intent(context, PlaylistDetailActivity::class.java)
             i.putExtra("id", currentPlaylist.id)
-            i.putExtra("nombre", currentPlaylist.name)
+            i.putExtra("name", currentPlaylist.name)
             i.putExtra("img", currentPlaylist.imageUrl)
             i.putExtra("artists", currentPlaylist.mainArtists)
+            i.putParcelableArrayListExtra("songs", currentPlaylist.playlistSongs)
             context.startActivity(i)
         }
     }

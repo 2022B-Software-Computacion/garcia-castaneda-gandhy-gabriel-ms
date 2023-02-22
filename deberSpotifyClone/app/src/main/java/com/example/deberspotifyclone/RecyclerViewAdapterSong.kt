@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 
 class RecyclerViewAdapterSong(
     private val songsArray: ArrayList<Song>,
@@ -36,20 +35,13 @@ class RecyclerViewAdapterSong(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentSong = this.songsArray[position]
-        holder.tvSongName.text = currentSong.name
-        holder.tvSongArtist.text = currentSong.artist
+        val currentSong = this.songsArray?.get(position)
+        holder.tvSongName.text = currentSong?.name
+        holder.tvSongArtist.text = currentSong?.artist
 
-        holder.itemView.setOnClickListener {
-            /*
-            val i = Intent(context, PlaylistDetailActivity::class.java)
-            i.putExtra("id", currentSong.id)
-            i.putExtra("nombre", currentSong.name)
-            context.startActivity(i) */
-        }
     }
 
     override fun getItemCount(): Int {
-        return this.songsArray.size
+        return this.songsArray!!.size
     }
 }
