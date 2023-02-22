@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">deberSpotifyClone</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_search">Buscar</string>
+    <string name="title_library">Tu bilbioteca</string>
+    <string name="title_premium">Premium</string>
+</resources>
