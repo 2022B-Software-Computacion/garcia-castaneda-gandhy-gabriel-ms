@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.firebase.firestore.Exclude
 
-class Producto (
+data class Producto (
     @Exclude @JvmField var id: String?,
     var nombre: String = "",
     var precioUnit: Float = 0.00f,
@@ -21,8 +21,8 @@ class Producto (
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
         parcel.readString() ?: "",
-        parcel.readFloat() ?: 0.00f,
-        parcel.readInt() ?: 0,
+        parcel.readFloat(),
+        parcel.readInt(),
         parcel.readString() ?: ""
     )
 
