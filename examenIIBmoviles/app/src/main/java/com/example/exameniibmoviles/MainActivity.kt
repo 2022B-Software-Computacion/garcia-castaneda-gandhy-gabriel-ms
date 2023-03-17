@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     private val updateProveedorLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val updatedProveedor = result.data?.getParcelableExtra<Proveedor>("proveedorActualizado")
-            Log.e("TAG", updatedProveedor.toString())
 
             //Actualizar el proveedor en el listview
             if (updatedProveedor != null) {
@@ -34,7 +33,6 @@ class MainActivity : AppCompatActivity() {
 
                     //Se actualiza el nuevo proveedor en la lista local
                     proveedoresNombres[index] = updatedProveedor.nombre
-                    Log.e("TAG", proveedoresNombres.toString())
 
                     //Se actualiza la vista de la lista
                     (proveedoresListView.adapter as ArrayAdapter<*>).notifyDataSetChanged()
@@ -50,6 +48,7 @@ class MainActivity : AppCompatActivity() {
                     (proveedoresListView.adapter as ArrayAdapter<*>).notifyDataSetChanged()
                 }
             }
+            getProveedoresIniciales()
         }
     }
 
@@ -68,6 +67,11 @@ class MainActivity : AppCompatActivity() {
         btnCrearProveedor.setOnClickListener {
             editarCrearProveedor(null)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getProveedoresIniciales()
     }
 
     override fun onCreateContextMenu(
@@ -118,36 +122,6 @@ class MainActivity : AppCompatActivity() {
         //Iniciar la actividad y pasar datos
         updateProveedorLauncher.launch(intent)
     }
-
-    /*
-    fun anadirProveedor(
-        adaptador: ArrayAdapter<Proveedor>,
-        arreglo: ArrayList<Proveedor>,
-        dao: FirestoreDAO
-    ) {
-        val listProductos = arrayListOf<Producto>()
-        listProductos.add(Producto("Producto1", 3.40f, 30, "producto nuevo"))
-        listProductos.add(Producto("Producto2", 2.80f, 50, "producto viejo"))
-        val nuevoProveedor = Proveedor("Proveedor1", "0983409087", listProductos)
-
-        dao.crearProveedor(
-            nuevoProveedor,
-            { id: String ->
-                // Agregar el nuevo proveedor a la lista local
-                nuevoProveedor.id = id
-                arreglo.add(nuevoProveedor)
-
-                // Notificar al adaptador
-                proveedoresNombres.add(nuevoProveedor.nombre)
-                adaptador.notifyDataSetChanged()
-            },
-            { exception ->
-                // Manejar el error si ocurre
-                Toast.makeText(this, "Error al agregar el proveedor: $exception", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        )
-    } */
 
     fun eliminarProveedor()  {
         // Se toma el índice de la lista para identificar el proveedor

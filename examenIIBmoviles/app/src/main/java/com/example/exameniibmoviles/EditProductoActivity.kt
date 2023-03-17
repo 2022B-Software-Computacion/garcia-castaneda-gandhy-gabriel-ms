@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -29,13 +30,13 @@ class EditProductoActivity : AppCompatActivity() {
         if (producto != null) {
             etNombre.setText(producto.nombre)
             etPrecio.setText(producto.precioUnit.toString())
-            etStock.setText(producto.stock)
+            etStock.setText(producto.stock.toString())
             etDescripcion.setText(producto.descripcion)
             btnGuardarProducto.setOnClickListener {
                 //Obtener los valores ingresados
                 val nuevoNombre = etNombre.text.toString()
-                val nuevoPrecio = (etPrecio.text.toString()) as Float
-                val nuevoStock = (etStock.text.toString()) as Int
+                val nuevoPrecio = (etPrecio.text.toString()).toFloat()
+                val nuevoStock = (etStock.text.toString()).toInt()
                 val nuevaDescricion = etDescripcion.text.toString()
                 val nuevoProducto = Producto(producto.id, nuevoNombre, nuevoPrecio, nuevoStock, nuevaDescricion)
 

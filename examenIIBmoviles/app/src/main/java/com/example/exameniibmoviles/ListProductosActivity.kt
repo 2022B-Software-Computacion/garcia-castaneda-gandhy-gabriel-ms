@@ -12,21 +12,20 @@ import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 
 class ListProductosActivity : AppCompatActivity() {
-    lateinit var productosListView: ListView
-    lateinit var nombreProveedorTextView: TextView
-
     val firestoreDAO = FirestoreDAO()
-
     var idItemSeleccionado = 0
+
     var productos: List<Producto>? = null
     lateinit var productosNombres: ArrayList<String>
+    lateinit var productosListView: ListView
+
+    lateinit var nombreProveedorTextView: TextView
     lateinit var nombreProveedor: String
     lateinit var idProveedor: String
 
     private val updateProductoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val updatedProducto = result.data?.getParcelableExtra<Producto>("productoActualizado")
-            Log.e("TAG", updatedProducto.toString())
 
             //Actualizar el producto en el listview
             if (updatedProducto != null) {
@@ -39,7 +38,6 @@ class ListProductosActivity : AppCompatActivity() {
 
                     //Se actualiza con el nuevo producto en la lista local
                     productosNombres[index] = updatedProducto.nombre
-                    Log.e("TAG", productosNombres.toString())
 
                     //Se actualiza la vista de la lista
                     (productosListView.adapter as ArrayAdapter<*>).notifyDataSetChanged()
