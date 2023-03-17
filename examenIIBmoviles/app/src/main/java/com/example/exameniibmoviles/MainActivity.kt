@@ -182,7 +182,7 @@ class MainActivity : AppCompatActivity() {
         // Crear un intent con los datos del proveedor
         val intent = Intent(this, ListProductosActivity::class.java)
         intent.putExtra("idProveedor", proveedor.id)
-        intent.putExtra("proveedorNombre", proveedor.nombre)
+        intent.putExtra("nombreProveedor", proveedor.nombre)
         intent.putParcelableArrayListExtra(
             "productos",
             ArrayList(proveedor.productos)

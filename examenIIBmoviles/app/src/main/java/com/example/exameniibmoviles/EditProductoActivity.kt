@@ -53,8 +53,8 @@ class EditProductoActivity : AppCompatActivity() {
             btnGuardarProducto.setOnClickListener {
                 //Obtener los valores ingresados
                 val nuevoNombre = etNombre.text.toString()
-                val nuevoPrecio = (etPrecio.text.toString()) as Float
-                val nuevoStock = (etStock.text.toString()) as Int
+                val nuevoPrecio = (etPrecio.text.toString()).toFloat()
+                val nuevoStock = (etStock.text.toString()).toInt()
                 val nuevaDescricion = etDescripcion.text.toString()
 
                 //Crear el nuevo producto

@@ -11,6 +11,7 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="48dp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/lv_productos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.175"
@@ -25,10 +26,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="48dp"
         android:text="Crear"
-        app:layout_constraintBottom_toTopOf="@+id/lv_productos"
         app:layout_constraintStart_toEndOf="@+id/tv_nombre_proveedor"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.054" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/lv_productos"
