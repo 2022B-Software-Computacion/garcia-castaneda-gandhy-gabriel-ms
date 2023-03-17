@@ -21,7 +21,7 @@ class EditProveedorActivity : AppCompatActivity() {
         val etTelefono = findViewById<EditText>(R.id.et_telefono_proveedor)
         val btnGuardarProveedor = findViewById<Button>(R.id.btn_guardar_proveedor)
 
-        //Obtener el id del proveedor y el producto
+        //Obtener el id del proveedor
         val proveedor = intent.getParcelableExtra<Proveedor>("proveedor")
 
         if (proveedor != null) {
@@ -49,6 +49,21 @@ class EditProveedorActivity : AppCompatActivity() {
                 //Obtener los valores ingresados
                 val nuevoNombre = etNombre.text.toString()
                 val nuevoTelefono = etTelefono.text.toString()
+
+                //Crear el nuevo proveedor
+                val proveedor = Proveedor(nuevoNombre, nuevoTelefono, emptyList())
+                firestoreDAO.crearProveedor(proveedor,
+                    {
+                        proveedor.id = it
+                        Toast.makeText(this, "Se creó el Proveedor ${proveedor.nombre} correctamente", Toast.LENGTH_SHORT)
+                            .show()
+                        setResult(Activity.RESULT_OK, Intent().putExtra("proveedorActualizado", proveedor))
+                        finish()
+                    }, { exception ->
+                        //Manejar el error si ocurre
+                        Toast.makeText(this, "Error al actualizar el Proveedor: $exception", Toast.LENGTH_SHORT)
+                            .show()
+                    })
             }
         }
     }
